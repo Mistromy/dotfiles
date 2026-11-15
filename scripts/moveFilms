@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+MOVIES="/srv/media/Movies"
+SERIES="/srv/media/Shows"
+
+
+path=$(gum file --directory)
+
+choice=$(gum choose "Movies" "Series")
+case "$choice" in
+  Movies) dest="$MOVIES" ;;
+  Series) dest="$SERIES" ;;
+esac
+
+sudo mv "$path" "$dest/"
